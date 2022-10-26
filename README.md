@@ -330,7 +330,14 @@ bool isPlatformHere(int photo_sensor_pin){
 
 [Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
 
+[Camera Arm 100mm](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20100mm_Scaled.stl)
+
+[Camera Arm 60mm](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%2060mm_Scaled.stl)
+
 [Camera Holder Front Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Front%20Cover%20v6.stl)
+
+[Camera Holder Back Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Back%20Cover%20v5.stl)
+
 
 
 ### Test Tube Racks
@@ -350,6 +357,8 @@ bool isPlatformHere(int photo_sensor_pin){
 [Lights Case](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Lights%20Case%20v10%20(1).stl)
 
 [Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Rack%20Clip%20v5%20(1).stl)
+
+[Incubator Platform](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/IncubatorPlatform_Alone%20v9.stl)
 
 
 ## Assembly
