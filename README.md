@@ -188,14 +188,13 @@ Within the same void loop(), we add an if statement to be called if "command_str
       char *step_length = strtok(NULL,"_");
       String step_string = step_length;
       Serial.println("Calling steppermotor() function to move:"+step_string+"mm");
-      int command_int;
-      command_int = step_string.toInt();
+      int command_int = step_string.toInt();
       steppermotor(command_int);
       command_string = "";
-      
     }
 ```
-``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved.
+``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved. In order to use the number of steps in our steppermotor() function, it must first be converted to an Integer: ```int command_int = step_string.toInt();``` Now, we call the steppermotor() function: ```steppermotor(command_int);```.
+
 
 ## 3D Printing
 ### Camera Arms and Holders
