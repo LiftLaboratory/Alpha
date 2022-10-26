@@ -35,7 +35,7 @@ Introduction
 ### Cameras
 This project uses the libcamera package, by Raspberry Pi. For information on this package, reference this [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-libcamera-apps).
 
-```
+```python
 import RPi.GPIO as gp
 import os
 import serial
@@ -43,7 +43,7 @@ import time
 ```
 explanation of imports
 
-```
+```python
 gp.setwarnings(False)
 gp.setmode(gp.BOARD)
 
@@ -53,24 +53,24 @@ gp.setup(12, gp.OUT)
 ```
 explanation of gp.setups
 
-```
+```python
 cameras = ['A', 'B', 'C', 'D']
 ```
 Defining cameras A, B, C, and D.
 
-```
+```python
 def capture(cam):
     cmd = "libcamera-still -o capture_%d.jpg" % cam
     os.system(cmd)
 ```
 ...
-```
+```python
 cmd = "libcamera-vid -t 0"
 ```
 An alternate function, "libcamera-vid", will take a continuous video without saving it, until the program is stopped. It's helpful to use while trying to get the cameras in place and focused.
 
-Creating our camera function:
-```
+**Defining the camera function:**
+```python
 def run_cameras(camChoice):
   if camChoice == 'A':
     i2c = "i2cset -y 1 0x70 0x00 0x04"
@@ -106,7 +106,7 @@ def run_cameras(camChoice):
 ### Serial Communication with Arduino
 The next section of our [Raspberry Pi code](./pi_serial_comm.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
 
-```
+```python
 if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     print("a:",a)
 ```
 
-```
+```python
     ser.write(b"step_-1]")
     for x in range(5):
         a = ser.readline().decode('utf-8').rstrip()
@@ -123,17 +123,17 @@ if __name__ == '__main__':
     ser.write(b"lights_A_200_200_200]")
  ```   
     
-```
+```python
     for x in range(5):
         b = ser.readline().decode('utf-8').rstrip()
         print("b:",b)
 ```
 Reading, decoding, and printing the bits received by the Ardunio. 
-```        
+```python       
     run_cameras('A')
  ```
  Running our camera function, for camera 'A'.
- ```       
+ ```python   
     ser.close()
  ```
 Close the serial communication channel(?).
@@ -142,26 +142,26 @@ Close the serial communication channel(?).
 
 [Arduino code](./arduino_code.ino)
 
-```
+```C++
 #include <SoftwareSerial.h>
 #include <AccelStepper.h>
 #include <Adafruit_NeoPixel.h>
 ```
-```
+```C++
 #define STEPPER_X_DIR_PIN 2
 #define STEPPER_X_STEP_PIN 3
 #define LED_PIN 5
 #define NUM_LEDS 96
 ```
-```
+```C++
 AccelStepper stepper(AccelStepper::DRIVER, STEPPER_X_STEP_PIN, STEPPER_X_DIR_PIN);
 Adafruit_NeoPixel pixels(NUM_LEDS,LED_PIN, NEO_GRB + NEO_KHZ800); 
 ```
-```
+```C++
 int front_photo_sensor = 9;
 int back_photo_sensor = 10; 
 ```
-```
+```C++
 void setup() {
   Serial.begin(9600);
   stepper.setMaxSpeed(5000);
@@ -170,7 +170,7 @@ void setup() {
   pixels.begin();
 }
 ```
-```
+```C++
 void loop() {
     String command = Serial.readStringUntil(']');
     char *function_call = strtok(command.c_str(),"_");
@@ -182,7 +182,7 @@ void loop() {
 ```String command_string = function_call;``` Converts the character string back to a String object for comparison.
 
 **Within the same void loop(), we add an if statement to parse out the information following "step" and use it to call the steppermotor() function:**
-```
+```C++
  if (command_string == "step")
     {
       char *step_length = strtok(NULL,"_");
@@ -196,7 +196,7 @@ void loop() {
 ``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved. In order to use the number of steps in our steppermotor() function, it must first be converted to an Integer: ```int command_int = step_string.toInt();``` Now, we call the steppermotor() function: ```steppermotor(command_int);```.
 
 **Also within the void loop(), we follow the same concept for parsing out information for and calling the lights() function:**
-```
+```C++
  else if (command_string == "lights")
     {
       Serial.println("Calling lights() function");
@@ -205,7 +205,7 @@ void loop() {
       Serial.println(light_string);
 ```
 ```char *which_lights = strtok(NULL,"_");``` parses out the light being called (A, B, C, or D).
-```
+```C++
       char *RedValue = strtok(NULL,"_");
       String RedString = String(RedValue);
       int Red = RedString.toInt();
@@ -222,7 +222,7 @@ void loop() {
       Serial.println(Blue);
  ```
  These three sections parse out the three RGB values, convert them to an integer, and print the value.
-```
+```C++
       int RGBValues[3] = {Red,Green,Blue};
       lights(which_lights,RGBValues);
       command_string="";
@@ -230,7 +230,7 @@ void loop() {
 In the first line, we're creating an array containing the Red, Blue, and Green Integer objects. The lights() function is then called with our two inputs: which_lights and RGBValues.
 
 **Defining the steppermotor() function:**
-```
+```C++
 int steppermotor(int distance) {
   int numberOfSteps = 320;
   if (distance > 0) 
@@ -271,7 +271,7 @@ int steppermotor(int distance) {
 ```
 
 **Defining the lights() function:**
-```
+```C++
 int lights(String LEDlights,int RGBvalues[3]) {   
    pixels.clear();
    if (LEDlights == "A")
