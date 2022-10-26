@@ -4,7 +4,7 @@ Introduction
 
 ## Table of Contents:
 ### [About the Project](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#about-the-project)
-### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#raspberry-pi-documentation)
+### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
   [Cameras](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#cameras)
   
   [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-arduino)
