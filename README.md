@@ -3,13 +3,13 @@ Introduction
 
 
 ## Table of Contents:
-### [About the Project](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#about-the-project)
+### [About the Project](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#about-the-project-1)
 ### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
-  [Cameras](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#cameras)
+  [Cameras](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#cameras-1)
   
-  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-arduino)
-### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#ardunio-documentation)
-  [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-raspberry-pi)
+  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-arduino-1)
+### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#ardunio-documentation-1)
+  [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-raspberry-pi-1)
   
   [Lights](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#lights)
   
