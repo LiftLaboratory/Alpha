@@ -326,12 +326,30 @@ bool isPlatformHere(int photo_sensor_pin){
 
 ## 3D Printing
 ### Camera Arms and Holders
+[Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base_Scaled%20(1).stl)
+
+[Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
+
+[Camera Holder Front Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Front%20Cover%20v6.stl)
+
 
 ### Test Tube Racks
 
 ### Machine and Actuator
+[Component Box](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Component_Box%20v13%20(1).stl)
+
+[Component Box Lid](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Component%20Box_Lid%20v2%20(2).stl)
+
+[Stepper Box](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Stepper_Box%20v21%20(1).stl)
+
+[Stepper Box Lid](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Stepper_Box_Lid%20v5%20(1).stl)
 
 ### Incubator and Lights
+[Charger Holster](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Charger_Holster_v2%20v6%20(2).stl)
+
+[Lights Case](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Lights%20Case%20v10%20(1).stl)
+
+[Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Rack%20Clip%20v5%20(1).stl)
 
 
 ## Assembly
