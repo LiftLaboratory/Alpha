@@ -314,7 +314,7 @@ int lights(String LEDlights,int RGBvalues[3]) {
 }
 ```
 **Creating a boolean to check if the sensor on the linear actuator detects the platform:**
-```
+```C++
 bool isPlatformHere(int photo_sensor_pin){
 
  bool result;
