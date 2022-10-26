@@ -106,13 +106,6 @@ def run_cameras(camChoice):
 ### Serial Communication with Arduino
 The next section of our [Raspberry Pi code](./pi_serial_comm.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
 
-## Ardunio Documentation
-
-[Arduino code](./arduino_code.ino)
-
-### Serial Communication with Raspberry Pi
-intro
-
 ```
 if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
@@ -144,6 +137,13 @@ Reading, decoding, and printing the bits received by the Ardunio.
     ser.close()
  ```
 Close the serial communication channel(?).
+
+## Ardunio Documentation
+
+[Arduino code](./arduino_code.ino)
+
+### Serial Communication with Raspberry Pi
+
 
 ### Lights
 
