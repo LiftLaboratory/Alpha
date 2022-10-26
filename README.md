@@ -7,7 +7,7 @@ Introduction
 ### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
   [Cameras](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#cameras)
   
-  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-arduino-1)
+  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-arduino)
 ### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#arduino-documentation-1)
   [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-raspberry-pi)
   
