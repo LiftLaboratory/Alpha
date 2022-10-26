@@ -181,7 +181,7 @@ void loop() {
 ```char *function_call = strtok(command.c_str(),"_");``` splits the string on the first "_" character and returns only the command part (i.e. "step" or "lights").
 ```String command_string = function_call;``` Converts the character string back to a String object for comparison.
 
-Within the same void loop(), we add an if statement to be called if "command_string" reads "step":
+**Within the same void loop(), we add an if statement to parse out the information following "step" and use it to call the steppermotor() function:**
 ```
  if (command_string == "step")
     {
@@ -195,6 +195,134 @@ Within the same void loop(), we add an if statement to be called if "command_str
 ```
 ``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved. In order to use the number of steps in our steppermotor() function, it must first be converted to an Integer: ```int command_int = step_string.toInt();``` Now, we call the steppermotor() function: ```steppermotor(command_int);```.
 
+**Also within the void loop(), we follow the same concept for parsing out information for and calling the lights() function:**
+```
+ else if (command_string == "lights")
+    {
+      Serial.println("Calling lights() function");
+      char *which_lights = strtok(NULL,"_");
+      String light_string = which_lights;
+      Serial.println(light_string);
+```
+```char *which_lights = strtok(NULL,"_");``` parses out the light being called (A, B, C, or D).
+```
+      char *RedValue = strtok(NULL,"_");
+      String RedString = String(RedValue);
+      int Red = RedString.toInt();
+      Serial.println(Red);
+      
+      char *GreenValue = strtok(NULL,"_");
+      String GreenString = String(GreenValue);
+      int Green = GreenString.toInt();
+      Serial.println(Green);
+      
+      char *BlueValue = strtok(NULL,"_");
+      String BlueString = String(BlueValue);
+      int Blue = BlueString.toInt();
+      Serial.println(Blue);
+ ```
+ These three sections parse out the three RGB values, convert them to an integer, and print the value.
+```
+      int RGBValues[3] = {Red,Green,Blue};
+      lights(which_lights,RGBValues);
+      command_string="";
+```
+In the first line, we're creating an array containing the Red, Blue, and Green Integer objects. The lights() function is then called with our two inputs: which_lights and RGBValues.
+
+**Defining the steppermotor() function:**
+```
+int steppermotor(int distance) {
+  int numberOfSteps = 320;
+  if (distance > 0) 
+    {
+      
+        for (int s=0;s < distance;s=s+1)
+          {
+            stepper.setCurrentPosition(0); 
+            stepper.moveTo(numberOfSteps);
+            stepper.setSpeed(5000);
+            Serial.println("Value of s:"+String(s)+" of "+String(distance));
+            while(stepper.currentPosition()<stepper.targetPosition())
+            { 
+              if(!isPlatformHere(back_photo_sensor))
+                stepper.runSpeedToPosition();
+            }
+          }
+    }
+    else 
+      {
+        
+        for (int s=0;s > distance;s=s-1)
+          {
+            stepper.setCurrentPosition(0); 
+            stepper.moveTo(-numberOfSteps);
+            stepper.setSpeed(5000);
+            Serial.println("Value of s:RGBvalues[0],RGBvalues[1],RGBvalues[2]"+String(s)+" of "+String(distance));
+            while(stepper.currentPosition()>stepper.targetPosition())
+            { 
+              //stepper.runSpeed();
+              if(!isPlatformHere(front_photo_sensor))
+                stepper.runSpeedToPosition();
+            }
+          }
+      }
+
+}
+```
+
+**Defining the lights() function:**
+```
+int lights(String LEDlights,int RGBvalues[3]) {   
+   pixels.clear();
+   if (LEDlights == "A")
+    {
+      Serial.println("Using light A");
+      for (int i=0;i<24;i=i+2)
+        {
+          pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
+          pixels.show();
+        }
+    }
+    else if (LEDlights == "B") 
+      {
+        Serial.println("Using light B");
+        for (int i=24;i<48;i=i+2)
+          {
+            pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
+            pixels.show();
+          }
+       
+      }
+     else if (LEDlights == "C") 
+      {
+        Serial.println("Using light C");
+        for (int i=48;i<72;i=i+2)
+          {
+            pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
+            pixels.show(); 
+          }
+      }
+      else if (LEDlights == "D") 
+      {
+        Serial.println("Using light D");
+        for (int i=72;i<96;i=i+2)
+          {
+            pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
+            pixels.show(); 
+          }
+      }
+}
+```
+**Creating a boolean to check if the sensor on the linear actuator detects the platform:**
+```
+bool isPlatformHere(int photo_sensor_pin){
+
+ bool result;
+ if(digitalRead(photo_sensor_pin)){result = true;}
+ else {result= false;}
+ return result;
+}
+```
 
 ## 3D Printing
 ### Camera Arms and Holders
