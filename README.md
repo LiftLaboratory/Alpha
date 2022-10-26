@@ -138,17 +138,64 @@ Reading, decoding, and printing the bits received by the Ardunio.
  ```
 Close the serial communication channel(?).
 
-## Ardunio Documentation
+## Arduino Documentation
 
 [Arduino code](./arduino_code.ino)
 
-### Serial Communication with Raspberry Pi
+```
+#include <SoftwareSerial.h>
+#include <AccelStepper.h>
+#include <Adafruit_NeoPixel.h>
+```
+```
+#define STEPPER_X_DIR_PIN 2
+#define STEPPER_X_STEP_PIN 3
+#define LED_PIN 5
+#define NUM_LEDS 96
+```
+```
+AccelStepper stepper(AccelStepper::DRIVER, STEPPER_X_STEP_PIN, STEPPER_X_DIR_PIN);
+Adafruit_NeoPixel pixels(NUM_LEDS,LED_PIN, NEO_GRB + NEO_KHZ800); 
+```
+```
+int front_photo_sensor = 9;
+int back_photo_sensor = 10; 
+```
+```
+void setup() {
+  Serial.begin(9600);
+  stepper.setMaxSpeed(5000);
+  pinMode(front_photo_sensor, INPUT_PULLUP); 
+  pinMode(back_photo_sensor, INPUT_PULLUP);
+  pixels.begin();
+}
+```
+```
+void loop() {
+    String command = Serial.readStringUntil(']');
+    char *function_call = strtok(command.c_str(),"_");
+    String command_string = function_call;
+    delay(100);
+```
+```String command = Serial.readStringUntil(']');``` reads the incoming bits from the Raspberry Pi, until it gets to a square bracket, and saves it as a String named "command".
+```char *function_call = strtok(command.c_str(),"_");``` splits the string on the first "_" character and returns only the command part (i.e. "step" or "lights").
+```String command_string = function_call;``` Converts the character string back to a String object for comparison.
 
-
-### Lights
-
-### Stepper Motor
-
+Within the same void loop(), we add an if statement to be called if "command_string" reads "step":
+```
+ if (command_string == "step")
+    {
+      char *step_length = strtok(NULL,"_");
+      String step_string = step_length;
+      Serial.println("Calling steppermotor() function to move:"+step_string+"mm");
+      int command_int;
+      command_int = step_string.toInt();
+      steppermotor(command_int);
+      command_string = "";
+      
+    }
+```
+``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved.
 
 ## 3D Printing
 ### Camera Arms and Holders
