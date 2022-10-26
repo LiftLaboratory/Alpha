@@ -24,24 +24,18 @@ void setup() {
 
 void loop() {
     String command = Serial.readStringUntil(']');
-    // Split the string on the first "-" character and return the command part
     char *function_call = strtok(command.c_str(),"_");
-    // convert cstring back to String object for comparison
     String command_string = function_call;
     delay(100);
  
     if (command_string == "step")
     {
       char *step_length = strtok(NULL,"_");
-      command_string = step_length;
-      Serial.println("Calling steppermotor() function to move:"+command_string+"mm");
-      int command_int;
-      command_int = command_string.toInt();
-     int answer = command_int * 3;
-      command_string = String(answer);
+      String step_string = step_length;
+      Serial.println("Calling steppermotor() function to move:"+step_string+"mm");
+      int command_int = step_string.toInt();
       steppermotor(command_int);
       command_string = "";
-      
     }
     
     else if (command_string == "lights")
