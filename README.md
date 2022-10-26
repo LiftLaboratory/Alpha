@@ -3,26 +3,26 @@ Introduction
 
 
 ## Table of Contents:
-### [About the Project](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#about-the-project-1)
+### [About the Project](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#about-the-project-1)
 ### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
-  [Cameras](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#cameras)
+  [Cameras](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#cameras)
   
-  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-arduino-1)
-### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#ardunio-documentation-1)
-  [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#serial-communication-with-raspberry-pi)
+  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/edit/blob/README.md#serial-communication-with-arduino-1)
+### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#arduino-documentation-1)
+  [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-raspberry-pi)
   
-  [Lights](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#lights)
+  [Lights](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#lights)
   
-  [Stepper Motor](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#stepper-motor)
-### [3D Printing](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#3d-printing-1)
-  [Camera Arms and Holders](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#camera-parts)
+  [Stepper Motor](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#stepper-motor)
+### [3D Printing](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#3d-printing-1)
+  [Camera Arms and Holders](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#camera-parts)
   
-  [Test Tube Racks](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#test-tube-racks)
+  [Test Tube Racks](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#test-tube-racks)
   
-  [Machine and Actuator](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#machine-and-actuator)
+  [Machine and Actuator](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#machine-and-actuator)
   
-  [Incubator and Lights](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#incubator-and-lights)
-### [Assembly](https://github.com/LiftLaboratory/Alpha/edit/main/README.md#assembly-1)
+  [Incubator and Lights](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#incubator-and-lights)
+### [Assembly](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#assembly-1)
 
 ## About the Project:
 
