@@ -1,4 +1,4 @@
-# Alpha
+# Automated Lab-Scale Phenotyping Apparatus (ALPHA) Project
 
 ## Table of Contents:
 ### [About the Project](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#about-the-project-1)
@@ -30,11 +30,11 @@
 ### Summary
 The goal of this project is to use highthroughput phenotyping to develop *Lemna gibba*, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing *Lemna gibba* into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. The use of a highthroughput phenotyping system will allow us to selectively focus on traits or phenotypes of interest during this breeding process.
 
-One of our traits of interest is growth rate. Currently, the growth rates of *Lemna gibba* decrease during the warmer months, limiting the species ability to be used for year-round agricultural production. Our experiment will expose *Lemna gibba* hybrids to colder winter temperatures, warmer spring/fall(?) temperatures, and hot summer temperatures to analyze which varieties maintain high growth rates throughout the seasons. These temperatures will be simulated using incubators, where the *Lemna gibba* will grow in test tube racks so they can be easily transported and phenotyped.
+One of our traits of interest is growth rate. Currently, the growth rates of *Lemna gibba* decrease during the warmer months, limiting the species ability to be used for year-round agricultural production. Our experiment will expose *Lemna gibba* hybrids to colder winter temperatures, warmer spring/fall temperatures, and hot summer temperatures to analyze which varieties maintain high growth rates throughout the seasons. These temperatures will be simulated using incubators, where the *Lemna gibba* will grow in test tube racks so they can be easily transported and phenotyped.
 
 ### Components
 **Machine Cage:**
-The cage enclosing the phenotyping system was built using T-slotted aluminum(??). As a result, the camera arms and other components can be easily mounted to the structure using...
+The cage enclosing the phenotyping system was built using T-slotted aluminum. As a result, the camera arms and other components can be easily mounted to the structure.
 
 **Linear Actuator:**
 The function of the linear actuator is to move the test tube racks along the platform, so they can be imaged by the Raspberry Pi cameras.
@@ -395,6 +395,16 @@ bool isPlatformHere(int photo_sensor_pin){
 </p>
 </details>
 
+<details><summary>Attaching Components to the Cage</summary>
+<p>
+  
+T-slotted framing fasteners and M4 screws can be used to attach the camera arms and Raspberry Pi case to the cage.
+  
+How is linear actuator attached?
+
+</p>
+</details>
+
 ### Test Tube Racks
 <details><summary>Hinge Open Diagram</summary>
 <p>
@@ -408,6 +418,25 @@ bool isPlatformHere(int photo_sensor_pin){
 <p>
 
 ![Hinge Closed Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeClosed%20(1).png?raw=true)
+
+</p>
+</details>
+
+### Cameras
+
+<details><summary>Camera Angles Diagram</summary>
+<p>
+  
+![Camera Angles Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/Imaging%20angle%20diagram.png?raw=true)
+
+</p>
+</details>
+
+### Arduino and Stepper Motor
+<details><summary>Arduino and Stepper Motor Diagram</summary>
+<p>
+
+![Arduino and Stepper Motor Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/Arduino%20and%20Stepper%20motor%20Diagram.png?raw=true)
 
 </p>
 </details>
