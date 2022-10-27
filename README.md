@@ -1,9 +1,11 @@
 # Alpha
-Introduction
-
 
 ## Table of Contents:
 ### [About the Project](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#about-the-project-1)
+  [Summary](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#summary)
+  
+  [Components](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#components)
+
 ### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
   [Cameras](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#cameras)
   
