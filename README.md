@@ -190,11 +190,6 @@ void loop() {
     String command_string = function_call;
     delay(100);
 ```
-```String command = Serial.readStringUntil(']');``` reads the incoming bits from the Raspberry Pi, until it gets to a square bracket, and saves it as a String named "command".
-```char *function_call = strtok(command.c_str(),"_");``` splits the string on the first "_" character and returns only the command part (i.e. "step" or "lights").
-```String command_string = function_call;``` Converts the character string back to a String object for comparison.
-
-**Within the same void loop(), we add an if statement to parse out the information following "step" and use it to call the steppermotor() function:**
 ```C++
  if (command_string == "step")
     {
@@ -206,9 +201,6 @@ void loop() {
       command_string = "";
     }
 ```
-``` char *step_length = strtok(NULL,"_"); ``` Starting from the last "_" encountered, the string is split again, returning the next section of information contained in the string and saving it as "step_length". Next, we save "step_length" as a String object, named "step_string". This allows us to use Serial.println() to print a line stating how many millimeters are being moved. In order to use the number of steps in our steppermotor() function, it must first be converted to an Integer: ```int command_int = step_string.toInt();``` Now, we call the steppermotor() function: ```steppermotor(command_int);```.
-
-**Also within the void loop(), we follow the same concept for parsing out information for and calling the lights() function:**
 ```C++
  else if (command_string == "lights")
     {
@@ -217,7 +209,6 @@ void loop() {
       String light_string = which_lights;
       Serial.println(light_string);
 ```
-```char *which_lights = strtok(NULL,"_");``` parses out the light being called (A, B, C, or D).
 ```C++
       char *RedValue = strtok(NULL,"_");
       String RedString = String(RedValue);
@@ -233,14 +224,12 @@ void loop() {
       String BlueString = String(BlueValue);
       int Blue = BlueString.toInt();
       Serial.println(Blue);
- ```
- These three sections parse out the three RGB values, convert them to an integer, and print the value.
+```
 ```C++
       int RGBValues[3] = {Red,Green,Blue};
       lights(which_lights,RGBValues);
       command_string="";
 ```
-In the first line, we're creating an array containing the Red, Blue, and Green Integer objects. The lights() function is then called with our two inputs: which_lights and RGBValues.
 
 **Defining the steppermotor() function:**
 ```C++
