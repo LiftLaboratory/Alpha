@@ -26,11 +26,13 @@ Introduction
 
 ## About the Project:
 
-...
+The goal of this project is to use highthroughput phenotyping to develop Lemna gibba, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing Lemna gibba into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. 
+
+explanation of the different parts: test tube racks (upright and slanted positions have different uses), cage structure, linear actuator, 
 
 ## Raspberry Pi Documentation
 
-[Complete Raspberry Pi Code](./pi_serial_comm.py)
+[Raspberry Pi Code](./pi_serial_comm.py)
 
 ### Cameras
 This project uses the libcamera package, by Raspberry Pi. For information on this package, reference this [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-libcamera-apps).
@@ -41,7 +43,6 @@ import os
 import serial
 import time
 ```
-explanation of imports
 
 ```python
 gp.setwarnings(False)
@@ -51,12 +52,10 @@ gp.setup(7, gp.OUT)
 gp.setup(11, gp.OUT)
 gp.setup(12, gp.OUT)
 ```
-explanation of gp.setups
 
 ```python
 cameras = ['A', 'B', 'C', 'D']
 ```
-Defining cameras A, B, C, and D.
 
 ```python
 def capture(cam):
@@ -101,7 +100,6 @@ def run_cameras(camChoice):
     gp.output(12, False)
     capture(4)
  ```
- Explain this function...
 
 ### Serial Communication with Arduino
 The next section of our [Raspberry Pi code](./pi_serial_comm.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
@@ -114,7 +112,6 @@ if __name__ == '__main__':
     a = ser.readline().decode('utf-8').rstrip()
     print("a:",a)
 ```
-
 ```python
     ser.write(b"step_-1]")
     for x in range(5):
@@ -122,21 +119,17 @@ if __name__ == '__main__':
         print("a:",a)
     ser.write(b"lights_A_200_200_200]")
  ```   
-    
 ```python
     for x in range(5):
         b = ser.readline().decode('utf-8').rstrip()
         print("b:",b)
 ```
-Reading, decoding, and printing the bits received by the Ardunio. 
 ```python       
     run_cameras('A')
  ```
- Running our camera function, for camera 'A'.
  ```python   
     ser.close()
  ```
-Close the serial communication channel(?).
 
 ## Arduino Documentation
 
@@ -326,6 +319,7 @@ bool isPlatformHere(int photo_sensor_pin){
 
 ## 3D Printing
 ### Camera Arms and Holders
+
 [Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base_Scaled%20(1).stl)
 
 [Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
