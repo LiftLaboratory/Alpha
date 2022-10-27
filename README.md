@@ -405,3 +405,20 @@ bool isPlatformHere(int photo_sensor_pin){
 
 </p>
 </details>
+
+### Test Tube Racks
+<details><summary>Hinge Open Diagram</summary>
+<p>
+
+![Hinge Open Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeOpen%20(1).png?raw=true)
+
+</p>
+</details>
+
+<details><summary>Hinge Closed Diagram</summary>
+<p>
+
+![Hinge Closed Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeClosed%20(1).png?raw=true)
+
+</p>
+</details>
