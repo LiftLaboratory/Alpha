@@ -25,10 +25,33 @@ Introduction
 ### [Assembly](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#assembly-1)
 
 ## About the Project:
+### Summary
+The goal of this project is to use highthroughput phenotyping to develop *Lemna gibba*, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing *Lemna gibba* into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. 
 
-The goal of this project is to use highthroughput phenotyping to develop Lemna gibba, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing Lemna gibba into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. 
+The use of a highthroughput phenotyping system will allow us to selectively focus on traits or phenotypes of interest during this breeding process.
 
-explanation of the different parts: test tube racks (upright and slanted positions have different uses), cage structure, linear actuator, 
+### Components
+**Machine Cage:**
+The cage enclosing the phenotyping system was built using T-slotted aluminum(??). As a result, the camera arms and other components can be easily mounted to the structure using...
+
+**Linear Actuator:**
+The function of the linear actuator is to move the test tube racks along the platform, so they can be imaged by the Raspberry Pi cameras. Using a linear actuator allows for precise control of distance and speed.
+
+**Stepper Motor and Microstep Driver:**
+Using a stepper motor allows for a high degree of control and accuracy over the linear actuator. Stepper motors divide a full rotation of the linear actuator into an equivalent number of steps, making it easier to program the distance moved.
+
+The stepper motor is controlled using a microstep driver, which is then controlled by an Arduino.
+
+**Arduino**
+For this project, an Arduino is used to control the stepper motor and LED lights. 
+
+**Raspberry Pi**
+
+
+**LED Lights**
+
+**Test Tube Racks:**
+The design of our test tube racks creates two possible positions: upright and slanted. The first position allows the rack to stand up and be easily stored in an incubator. The second gives a clear top view of the surface area of the plants while imaging the test tubes.
 
 ## Raspberry Pi Documentation
 
