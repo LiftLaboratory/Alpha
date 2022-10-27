@@ -388,3 +388,6 @@ bool isPlatformHere(int photo_sensor_pin){
 
 
 ## Assembly
+### Wiring Diagrams
+
+![Lights Wiring Diagram]("https://github.com/LiftLaboratory/Alpha/blob/main/Lights_Wiring%20Diagram.jpg")
