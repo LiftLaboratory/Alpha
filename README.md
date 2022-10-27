@@ -40,23 +40,19 @@ The cage enclosing the phenotyping system was built using T-slotted aluminum(??)
 The function of the linear actuator is to move the test tube racks along the platform, so they can be imaged by the Raspberry Pi cameras. Using a linear actuator allows for precise control of distance and speed.
 
 **Stepper Motor and Microstep Driver:**
-Using a stepper motor allows for a high degree of control and accuracy over the linear actuator. Stepper motors divide a full rotation of the linear actuator into an equivalent number of steps, making it easier to program the distance moved.
-
-The stepper motor is controlled using a microstep driver, which is then controlled by an Arduino.
-
-**Arduino**
-For this project, an Arduino is used to control the linear actuator and LED lights. 
+The linear actuator is controlled using a stepper motor, which allows for a high degree of control and accuracy. Stepper motors divide a full rotation of the linear actuator into an equivalent number of steps, making it easier to program the distance moved. The stepper motor is controlled using a microstep driver, which is then controlled by an Arduino.
 
 **Raspberry Pi:**
-A Raspberry Pi 4 Model B is used to control the cameras for the project, as well as interface with the Arduino to increase the functionality of the system.
-Attaching an Arducam Multi Camera Board to the Raspberry Pi allows all four cameras to be controlled from a single Raspberry Pi.
+A Raspberry Pi 4 Model B is used to control the cameras, as well as interface with the Arduino to increase the functionality of the system. Attaching an Arducam Multi Camera Board to the Raspberry Pi allows all four cameras to be controlled from a single Raspberry Pi.
+
+**Arduino:**
+For this project, an Arduino is used to control the linear actuator and LED lights. The Arduino is programmed to receive input from the Raspberry Pi to call the light and motor functions and read in inputs for the specified function. 
 
 **Cameras:**
-The cameras used were Raspberry Pi high quality cameras with ArduCam camera lenses (6mm for the sides and 8mm for the top).
-
+The cameras used are Raspberry Pi high quality cameras with ArduCam camera lenses (6mm for the sides and 8mm for the top).
 
 **LED Lights:**
-
+The lights surrounding the cameras are RBG NeoPixel Rings, with 24 individually programmable LEDs. These lights make it easily to change the color and intensity of each LED. For this project, only 12 of the 24 LEDs on each ring were programmed to turn on when called by the function.
 
 **Test Tube Racks:**
 The design of our test tube racks creates two possible positions: upright and slanted. The first position allows the rack to stand up and be easily stored in an incubator. The second gives a clear top view of the surface area of the plants while imaging the test tubes.
@@ -74,7 +70,6 @@ import os
 import serial
 import time
 ```
-
 ```python
 gp.setwarnings(False)
 gp.setmode(gp.BOARD)
@@ -83,21 +78,15 @@ gp.setup(7, gp.OUT)
 gp.setup(11, gp.OUT)
 gp.setup(12, gp.OUT)
 ```
-
 ```python
 cameras = ['A', 'B', 'C', 'D']
 ```
-
 ```python
 def capture(cam):
     cmd = "libcamera-still -o capture_%d.jpg" % cam
     os.system(cmd)
 ```
-...
-```python
-cmd = "libcamera-vid -t 0"
-```
-An alternate function, "libcamera-vid", will take a continuous video without saving it, until the program is stopped. It's helpful to use while trying to get the cameras in place and focused.
+Using ```cmd = "libcamera-vid -t 0"``` instead of "libcamera-still" will take a continuous video without saving it, until the program is stopped. It's helpful to use while trying to get the cameras in place and focused.
 
 **Defining the camera function:**
 ```python
