@@ -28,9 +28,9 @@
 
 ## About the Project:
 ### Summary
-The goal of this project is to use highthroughput phenotyping to develop *Lemna gibba*, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing *Lemna gibba* into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. 
+The goal of this project is to use highthroughput phenotyping to develop *Lemna gibba*, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing *Lemna gibba* into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. The use of a highthroughput phenotyping system will allow us to selectively focus on traits or phenotypes of interest during this breeding process.
 
-The use of a highthroughput phenotyping system will allow us to selectively focus on traits or phenotypes of interest during this breeding process.
+One of our traits of interest is growth rate. Currently, the growth rates of *Lemna gibba* decrease during the warmer months, limiting the species ability to be used for year-round agricultural production. Our experiment will expose *Lemna gibba* hybrids to colder winter temperatures, warmer spring/fall(?) temperatures, and hot summer temperatures to analyze which varieties maintain high growth rates throughout the seasons. These temperatures will be simulated using incubators, where the *Lemna gibba* will grow in test tube racks so they can be easily transported and phenotyped.
 
 ### Components
 **Machine Cage:**
