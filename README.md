@@ -389,10 +389,19 @@ bool isPlatformHere(int photo_sensor_pin){
 
 ## Assembly
 ### Wiring Diagrams
-<details><summary>Lights</summary>
+<details><summary>Lights and Arduino</summary>
 <p>
 
 ![Lights Wiring Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/Lights_Wiring%20Diagram.jpg?raw=true)
+
+</p>
+</details>
+
+### Cage and Actuator
+<details><summary>Cage and Actuator Diagram</summary>
+<p>
+  
+![Cage and Actuator Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/AlphaCage%20(1).png?raw=true)
 
 </p>
 </details>
