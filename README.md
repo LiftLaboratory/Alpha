@@ -353,7 +353,6 @@ bool isPlatformHere(int photo_sensor_pin){
 [Camera Holder Back Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Back%20Cover%20v5.stl)
 
 
-
 ### Test Tube Racks
 [Rack Hinged Main Body](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Hinged%20Main%20Body%20v7%20(2).stl)
 
