@@ -43,12 +43,18 @@ Using a stepper motor allows for a high degree of control and accuracy over the 
 The stepper motor is controlled using a microstep driver, which is then controlled by an Arduino.
 
 **Arduino**
-For this project, an Arduino is used to control the stepper motor and LED lights. 
+For this project, an Arduino is used to control the linear actuator and LED lights. 
 
-**Raspberry Pi**
+**Raspberry Pi:**
+A Raspberry Pi 4 Model B is used to control the cameras for the project, as well as interface with the Arduino to increase the functionality of the system.
+Attaching an Arducam Multi Camera Board to the Raspberry Pi allows all four cameras to be controlled from a single Raspberry Pi.
+
+**Cameras:**
+The cameras used were Raspberry Pi high quality cameras with ArduCam camera lenses (6mm for the sides and 8mm for the top).
 
 
-**LED Lights**
+**LED Lights:**
+
 
 **Test Tube Racks:**
 The design of our test tube racks creates two possible positions: upright and slanted. The first position allows the rack to stand up and be easily stored in an incubator. The second gives a clear top view of the surface area of the plants while imaging the test tubes.
