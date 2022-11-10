@@ -52,7 +52,7 @@ For this project, an Arduino is used to control the linear actuator and LED ligh
 The cameras used are Raspberry Pi high quality cameras with ArduCam camera lenses (6mm for the sides and 8mm for the top).
 
 **LED Lights:**
-The lights surrounding the cameras are RGB NeoPixel Rings, with 24 individually programmable LEDs. These lights make it easily to change the color and intensity of each LED. For this project, only 12 of the 24 LEDs on each ring were programmed to turn on when called by the function.
+The lights surrounding the cameras are RGB NeoPixel Rings, with 24 individually programmable LEDs. These lights make it easy to change the color and intensity of each LED. For this project, only 12 of the 24 LEDs on each ring were programmed to turn on when called by the function. LED lights are also used in the incubators to mimic summer, spring/fall, and winter light intensities.
 
 **Test Tube Racks:**
 The design of our test tube racks creates two possible positions: upright and slanted. The first position allows the rack to stand up and be easily stored in an incubator. The second gives a clear top view of the surface area of the plants while imaging the test tubes.
@@ -83,7 +83,7 @@ cameras = ['A', 'B', 'C', 'D']
 ```
 ```python
 def capture(cam):
-    cmd = "libcamera-still -o capture_%d.jpg" % cam
+    cmd = "libcamera-still -t 1000 -o capture_%d.jpg" % cam
     os.system(cmd)
 ```
 Using ```cmd = "libcamera-vid -t 0"``` instead of "libcamera-still" will take a continuous video without saving it, until the program is stopped. It's helpful to use while trying to get the cameras in place and focused.
@@ -149,6 +149,51 @@ if __name__ == '__main__':
  ```
  ```python   
     ser.close()
+ ```
+ ### Main Phenotyping Function
+ ```python
+ def reset():
+    ser.write(b"step_-600]")
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+    ser.reset_input_buffer()
+```
+The reset() function moves the platform back to the start of the actuator.
+```python
+def phenotyping():
+    ser.write(b"step_60]")
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+    time.sleep(4)
+    for i in range(0,2): # 6 positions to image 3 tubes at a time for 2 racks
+        ser.write(b"lights_A_100_100_100]")
+        run_cameras('A')
+        time.sleep(1)
+        print("Photo A captured")
+        
+        ser.write(b"lights_B_100_100_100]")
+        run_cameras('B')
+        time.sleep(1)
+        print("Photo B captured")
+        
+        ser.write(b"lights_C_100_100_100]")
+        run_cameras('C')
+        time.sleep(1)
+        print("Photo C captured")
+        
+        ser.write(b"lights_D_100_100_100]")
+        run_cameras('D')
+        time.sleep(1)
+        print("Photo D captured")
+        
+        ser.reset_input_buffer()
+        ser.write(b"step_80]") # move platform to next position
+        a = ser.readline().decode('utf-8').rstrip()
+        print("a:",a)
+        time.sleep(7)
+        ser.reset_input_buffer()
+        
+    reset() 
  ```
 
 ## Arduino Documentation
