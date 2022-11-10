@@ -49,7 +49,48 @@ def run_cameras(camChoice):
     gp.output(12, False)
     capture(4)
 
-
+def reset():
+    ser.write(b"step_-600]")
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+    ser.reset_input_buffer()
+    
+def phenotyping():
+    ser.write(b"step_60]")
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+    time.sleep(4)
+    for i in range(0,6): 
+        ser.write(b"lights_A_100_100_100]")
+        run_cameras('A')
+        time.sleep(1)
+        print("Photo A captured")
+        
+        ser.write(b"lights_B_100_100_100]")
+        run_cameras('B')
+        time.sleep(1)
+        print("Photo B captured")
+        
+        ser.write(b"lights_C_100_100_100]")
+        run_cameras('C')
+        time.sleep(1)
+        print("Photo C captured")
+        
+        ser.write(b"lights_D_100_100_100]")
+        run_cameras('D')
+        time.sleep(1)
+        print("Photo D captured")
+        
+        ser.reset_input_buffer()
+        ser.write(b"step_80]") #
+        a = ser.readline().decode('utf-8').rstrip()
+        print("a:",a)
+        time.sleep(7)
+        ser.reset_input_buffer()
+        
+    reset()   
+    
+    
 if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
@@ -57,17 +98,19 @@ if __name__ == '__main__':
     a = ser.readline().decode('utf-8').rstrip()
     print("a:",a)
     
-    ser.write(b"step_-1]")
-    for x in range(5):
-        a = ser.readline().decode('utf-8').rstrip()
-        print("a:",a)
-    ser.write(b"lights_A_200_200_200]")
+    #ser.write(b"step_-1]")
+    #for x in range(5):
+       # a = ser.readline().decode('utf-8').rstrip()
+       # print("a:",a)
+    #ser.write(b"lights_A_200_200_200]")
     
-    for x in range(5):
-        b = ser.readline().decode('utf-8').rstrip()
-        print("b:",b)
+    #for x in range(5):
+       # b = ser.readline().decode('utf-8').rstrip()
+       # print("b:",b)
         
-    run_cameras('A')
+    phenotyping()
+    
+    #run_cameras('A')
         
     ser.close()
     
