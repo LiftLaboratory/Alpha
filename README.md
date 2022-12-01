@@ -388,19 +388,23 @@ bool isPlatformHere(int photo_sensor_pin){
 
 
 ### Test Tube Racks
-[Rack Hinged Main Body](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Hinged%20Main%20Body%20v7%20(2).stl)
+[Rack Hinged Main Body](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Hinged%20Main%20Body%20v12.stl)
 
 [Rack Hinged Main Body - Test Tube Side](https://github.com/LiftLaboratory/Alpha/blob/main/TestTubeSide%20v20%20(1).stl)
 
-[Rack Support Mockup Bottom](https://github.com/LiftLaboratory/Alpha/blob/main/Rack_Support_Mockup_Botttom%20v1%20(2).stl)
+[Rack Support Mockup Bottom](https://github.com/LiftLaboratory/Alpha/blob/main/Rack_Support_Mockup_Botttom%20v5.stl)
 
-[Top Wing Attachment](https://github.com/LiftLaboratory/Alpha/blob/main/Top%20Wing%20Attachment%20v11%20(2).stl)
+[Rack Support Mockup Top](https://github.com/LiftLaboratory/Alpha/blob/main/Rack_Support_Mockup_Top%20v4.stl)
 
-[Bottom Wing Attachment](https://github.com/LiftLaboratory/Alpha/blob/main/Bottom%20Wing%20Attachment%20(2).stl)
+[Top Wing Attachment](https://github.com/LiftLaboratory/Alpha/blob/main/Top%20Wing%20Attachment%20v23.stl)
+
+[Bottom Wing Attachment](https://github.com/LiftLaboratory/Alpha/blob/main/Bottom%20Wing%20Attachment%20v8.stl)
 
 [Hinge Piece Long](https://github.com/LiftLaboratory/Alpha/blob/main/HingePieceLong%20v12%20(1).stl)
 
 [Hinge Piece Short](https://github.com/LiftLaboratory/Alpha/blob/main/HingePieceShort%20v5%20(1).stl)
+
+[Handle](https://github.com/LiftLaboratory/Alpha/blob/main/Handle_Ryan%20v2.stl)
 
 ### Machine and Actuator
 [Component Box](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Component_Box%20v13%20(1).stl)
@@ -412,13 +416,13 @@ bool isPlatformHere(int photo_sensor_pin){
 [Stepper Box Lid](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Stepper_Box_Lid%20v5%20(1).stl)
 
 ### Incubator and Lights
-[Charger Holster](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Charger_Holster_v2%20v6%20(2).stl)
+[Charger Holster](https://github.com/LiftLaboratory/Alpha/blob/main/Charger_Holster_v2%20v7%20(1).stl)
 
 [Lights Case](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Lights%20Case%20v10%20(1).stl)
 
 [Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Rack%20Clip%20v5%20(1).stl)
 
-[Incubator Platform](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/IncubatorPlatform_Alone%20v9.stl)
+[Incubator Platform](https://github.com/LiftLaboratory/Alpha/blob/main/IncubatorPlatform_Alone%20v11.stl)
 
 
 ## Assembly
