@@ -418,7 +418,7 @@ bool isPlatformHere(int photo_sensor_pin){
 
 [Lights Case](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Lights%20Case%20v10%20(1).stl)
 
-[Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Rack%20Clip%20v5%20(1).stl)
+[Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Clip%20v6.stl)
 
 [Incubator Platform](https://github.com/LiftLaboratory/Alpha/blob/main/IncubatorPlatform_Alone%20v11.stl)
 
