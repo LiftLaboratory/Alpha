@@ -390,8 +390,6 @@ bool isPlatformHere(int photo_sensor_pin){
 ### Test Tube Racks
 [Rack Hinged Main Body](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Hinged%20Main%20Body%20v12.stl)
 
-[Rack Hinged Main Body - Test Tube Side](https://github.com/LiftLaboratory/Alpha/blob/main/TestTubeSide%20v20%20(1).stl)
-
 [Rack Support Mockup Bottom](https://github.com/LiftLaboratory/Alpha/blob/main/Rack_Support_Mockup_Botttom%20v5.stl)
 
 [Rack Support Mockup Top](https://github.com/LiftLaboratory/Alpha/blob/main/Rack_Support_Mockup_Top%20v4.stl)
