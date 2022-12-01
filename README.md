@@ -374,17 +374,17 @@ bool isPlatformHere(int photo_sensor_pin){
 ## 3D Printing
 ### Camera Arms and Holders
 
-[Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base_Scaled%20(1).stl)
+[Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20Base_Scaled%20(1).stl)
 
-[Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
+[Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
 
-[Camera Arm 100mm](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%20100mm_Scaled.stl)
+[Camera Arm 100mm](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20100mm_Scaled.stl)
 
-[Camera Arm 60mm](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Arm%2060mm_Scaled.stl)
+[Camera Arm 60mm](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%2060mm_Scaled.stl)
 
-[Camera Holder Front Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Front%20Cover%20v6.stl)
+[Camera Holder Front Cover](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Holder%20Front%20Cover%20v6.stl)
 
-[Camera Holder Back Cover](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Camera%20Holder%20Back%20Cover%20v5.stl)
+[Camera Holder Back Cover](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Holder%20Back%20Cover%20v5.stl)
 
 
 ### Test Tube Racks
@@ -405,18 +405,18 @@ bool isPlatformHere(int photo_sensor_pin){
 [Handle](https://github.com/LiftLaboratory/Alpha/blob/main/Handle_Ryan%20v2.stl)
 
 ### Machine and Actuator
-[Component Box](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Component_Box%20v13%20(1).stl)
+[Component Box](https://github.com/LiftLaboratory/Alpha/blob/main/Component_Box%20v13%20(1).stl)
 
-[Component Box Lid](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Component%20Box_Lid%20v2%20(2).stl)
+[Component Box Lid](https://github.com/LiftLaboratory/Alpha/blob/main/Component%20Box_Lid%20v2%20(2).stl)
 
-[Stepper Box](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Stepper_Box%20v21%20(1).stl)
+[Stepper Box](https://github.com/LiftLaboratory/Alpha/blob/main/Stepper_Box%20v21%20(1).stl)
 
-[Stepper Box Lid](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Stepper_Box_Lid%20v5%20(1).stl)
+[Stepper Box Lid](https://github.com/LiftLaboratory/Alpha/blob/main/Stepper_Box_Lid%20v5%20(1).stl)
 
 ### Incubator and Lights
 [Charger Holster](https://github.com/LiftLaboratory/Alpha/blob/main/Charger_Holster_v2%20v7%20(1).stl)
 
-[Lights Case](https://github.com/LiftLaboratory/Alpha/blob/3D-Printing/Lights%20Case%20v10%20(1).stl)
+[Lights Case](https://github.com/LiftLaboratory/Alpha/blob/main/Lights%20Case%20v10%20(1).stl)
 
 [Rack Clip](https://github.com/LiftLaboratory/Alpha/blob/main/Rack%20Clip%20v6.stl)
 
