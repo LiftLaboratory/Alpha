@@ -62,7 +62,7 @@ The design of our test tube racks creates two possible positions: upright and sl
 [Raspberry Pi Code](./Phenotyping.py)
 
 ### Cameras
-This project uses the libcamera package, by Raspberry Pi. For information on this package, reference this [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-libcamera-apps).
+This project uses PiCamera2 to operate the cameras. For information on this library, reference this [documentation](https://pypi.org/project/picamera2/0.2.2/).
 
 ```python
 import RPi.GPIO as gp
@@ -127,16 +127,18 @@ def run_cameras(camChoice):
     gp.output(12, False)
     capture(4)
  ```
-**Defining the function to reset the actuator to its starting position:**
+**Defining the function that resets the actuator to its starting position:**
 ```python
 def reset():
     makeCall("step_-600]")
     a = ser.readline().decode('utf-8').rstrip()
     print("a:",a)
 ```
-**Serial Communication with Arduino:**
-The next section of our [Raspberry Pi code](./pi_serial_comm.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
+### Serial Communication with the Arduino:
+The next section of our [Raspberry Pi code](./Phenotyping.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
 
+**Defining the makeCall function:**
+### This function facilitates serial communication between the Raspberry Pi and the Arduino. The parameter, "command", is a string containing information to call a specific function on the Arduino. Feedback from the Arduino is continuously read until "Complete" is sent to the Raspberry Pi, signaling that the function has finished running.
 ```python
 def makeCall(command):
     ser.write(bytes(command,'utf-8'))
@@ -147,7 +149,7 @@ def makeCall(command):
         time.sleep(0.1)
 ```
 
-**Defining the main phenotyping function:**
+**Defining the phenotyping function:**
 ```python
 def phenotyping():
     reset()
@@ -181,7 +183,7 @@ def phenotyping():
 
     reset()
 ```
-
+### Main script:
 ```python
 if __name__ == '__main__':
 
@@ -230,7 +232,7 @@ int back_photo_sensor = 10;
 ```C++
 void setup() {
   Serial.begin(9600);
-  stepper.setMaxSpeed(5000);
+  stepper.setMaxSpeed(7000);
   pinMode(front_photo_sensor, INPUT_PULLUP); 
   pinMode(back_photo_sensor, INPUT_PULLUP);
   pixels.begin();
@@ -243,6 +245,7 @@ void loop() {
     String command_string = function_call;
     delay(100);
 ```
+**If the steppermotor is called:**
 ```C++
  if (command_string == "step")
     {
@@ -252,8 +255,11 @@ void loop() {
       int command_int = step_string.toInt();
       steppermotor(command_int);
       command_string = "";
+      Serial.println("Max Speed Set:"+String(stepper.maxSpeed()));
+      Serial.println("Complete");
     }
 ```
+**If the lights are called:**
 ```C++
  else if (command_string == "lights")
     {
@@ -266,24 +272,30 @@ void loop() {
       char *RedValue = strtok(NULL,"_");
       String RedString = String(RedValue);
       int Red = RedString.toInt();
-      Serial.println(Red);
       
       char *GreenValue = strtok(NULL,"_");
       String GreenString = String(GreenValue);
       int Green = GreenString.toInt();
-      Serial.println(Green);
       
       char *BlueValue = strtok(NULL,"_");
       String BlueString = String(BlueValue);
       int Blue = BlueString.toInt();
-      Serial.println(Blue);
+      Serial.println("Calling lights() function on light:"+light_string+" RGB:"+Red+","+Green+","+Blue);
 ```
 ```C++
       int RGBValues[3] = {Red,Green,Blue};
       lights(which_lights,RGBValues);
       command_string="";
+      Serial.println("Complete");
 ```
-
+**To check serial communication:**
+ ```C++
+ else if (command_string == "check")
+    {
+      Serial.println("Still Connected");
+      Serial.println("Complete");
+    }
+```
 **Defining the steppermotor() function:**
 ```C++
 int steppermotor(int distance) {
@@ -295,9 +307,8 @@ int steppermotor(int distance) {
           {
             stepper.setCurrentPosition(0); 
             stepper.moveTo(numberOfSteps);
-            stepper.setSpeed(5000);
-            Serial.println("Value of s:"+String(s)+" of "+String(distance));
-            while(stepper.currentPosition()<stepper.targetPosition())
+            stepper.setSpeed(7000);
+            while((stepper.currentPosition()<stepper.targetPosition()) && (!isPlatformHere(back_photo_sensor)))
             { 
               if(!isPlatformHere(back_photo_sensor))
                 stepper.runSpeedToPosition();
@@ -311,11 +322,9 @@ int steppermotor(int distance) {
           {
             stepper.setCurrentPosition(0); 
             stepper.moveTo(-numberOfSteps);
-            stepper.setSpeed(5000);
-            Serial.println("Value of s:RGBvalues[0],RGBvalues[1],RGBvalues[2]"+String(s)+" of "+String(distance));
-            while(stepper.currentPosition()>stepper.targetPosition())
+            stepper.setSpeed(7000);
+            while((stepper.currentPosition()>stepper.targetPosition()) && (!isPlatformHere(front_photo_sensor)))
             { 
-              //stepper.runSpeed();
               if(!isPlatformHere(front_photo_sensor))
                 stepper.runSpeedToPosition();
             }
@@ -331,7 +340,6 @@ int lights(String LEDlights,int RGBvalues[3]) {
    pixels.clear();
    if (LEDlights == "A")
     {
-      Serial.println("Using light A");
       for (int i=0;i<24;i=i+2)
         {
           pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
@@ -340,7 +348,6 @@ int lights(String LEDlights,int RGBvalues[3]) {
     }
     else if (LEDlights == "B") 
       {
-        Serial.println("Using light B");
         for (int i=24;i<48;i=i+2)
           {
             pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
@@ -350,7 +357,6 @@ int lights(String LEDlights,int RGBvalues[3]) {
       }
      else if (LEDlights == "C") 
       {
-        Serial.println("Using light C");
         for (int i=48;i<72;i=i+2)
           {
             pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
@@ -359,8 +365,15 @@ int lights(String LEDlights,int RGBvalues[3]) {
       }
       else if (LEDlights == "D") 
       {
-        Serial.println("Using light D");
         for (int i=72;i<96;i=i+2)
+          {
+            pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
+            pixels.show(); 
+          }
+      }
+      else if (LEDlights == "ABCD")
+      {
+        for (int i=0;i<96;i=i+2)
           {
             pixels.setPixelColor(i,RGBvalues[0],RGBvalues[1],RGBvalues[2]);
             pixels.show(); 
@@ -370,7 +383,7 @@ int lights(String LEDlights,int RGBvalues[3]) {
 ```
 **Creating a boolean to check if the sensor on the linear actuator detects the platform:**
 ```C++
-bool isPlatformHere(int photo_sensor_pin){
+bool isPlatformHere(int photo_sensor_pin){ 
 
  bool result;
  if(digitalRead(photo_sensor_pin)){result = true;}
