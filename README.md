@@ -59,7 +59,7 @@ The design of our test tube racks creates two possible positions: upright and sl
 
 ## Raspberry Pi Documentation
 
-[Raspberry Pi Code](./pi_serial_comm.py)
+[Raspberry Pi Code](./Phenotyping.py)
 
 ### Cameras
 This project uses the libcamera package, by Raspberry Pi. For information on this package, reference this [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-libcamera-apps).
@@ -69,6 +69,7 @@ import RPi.GPIO as gp
 import os
 import serial
 import time
+from picamera2 import Picamera2
 ```
 ```python
 gp.setwarnings(False)
@@ -82,11 +83,17 @@ gp.setup(12, gp.OUT)
 cameras = ['A', 'B', 'C', 'D']
 ```
 ```python
-def capture(cam):
-    cmd = "libcamera-still -t 1000 -o capture_%d.jpg" % cam
-    os.system(cmd)
+picam = Picamera2()
+camera_config = picam.create_still_configuration({"size": (2028,1520)}) 
+picam.configure(camera_config)
 ```
-Using ```cmd = "libcamera-vid -t 0"``` instead of "libcamera-still" will take a continuous video without saving it, until the program is stopped. It's helpful to use while trying to get the cameras in place and focused.
+```python
+def capture(cam, timestamp):
+    picam.start()
+    time.sleep(0.2)
+    picam.capture_file("/home/pi/Desktop/Phenotyping/capture-"+str(cam)+"-"+timestamp+".jpg")
+    picam.stop()
+```
 
 **Defining the camera function:**
 ```python
@@ -120,81 +127,82 @@ def run_cameras(camChoice):
     gp.output(12, False)
     capture(4)
  ```
-
-### Serial Communication with Arduino
+**Defining the function to reset the actuator to its starting position:**
+```python
+def reset():
+    makeCall("step_-600]")
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+```
+**Serial Communication with Arduino:**
 The next section of our [Raspberry Pi code](./pi_serial_comm.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
 
 ```python
-if __name__ == '__main__':
-    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    ser.reset_input_buffer()
-    a = "0"
+def makeCall(command):
+    ser.write(bytes(command,'utf-8'))
+    readBack = ""
+    while(readBack != "Complete"):
+        readBack = ser.readline().decode('utf-8').rstrip()
+        print("From Arduino:",readBack)
+        time.sleep(0.1)
+```
+
+**Defining the main phenotyping function:**
+```python
+def phenotyping():
+    reset()
+    makeCall("step_51]")
     a = ser.readline().decode('utf-8').rstrip()
     print("a:",a)
-```
-```python
-    ser.write(b"step_-1]")
-    for x in range(5):
+    
+    steps = ["74","74","84","75","75","0"]
+    step_com = ""
+    for i in range(1,7): # 6 positions to image 3 tubes at a time for 2 racks
+        makeCall("lights_A_100_100_50]")
+        run_cameras('A')
+        print("Photo A captured")
+        
+        makeCall("lights_B_100_100_50]")
+        run_cameras('B')
+        print("Photo B captured")
+        
+        makeCall("lights_C_100_100_50]")
+        run_cameras('C')
+        print("Photo C captured")
+        
+        makeCall("lights_D_100_100_50]")
+        run_cameras('D')
+        print("Photo D captured")
+        
+        step_com = "step_" + steps[i-1] + "]"
+        makeCall(step_com) # move platform to next position
         a = ser.readline().decode('utf-8').rstrip()
         print("a:",a)
-    ser.write(b"lights_A_200_200_200]")
- ```   
+
+    reset()
+```
+
 ```python
+if __name__ == '__main__':
+
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    a = "0" 
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a)
+        
+    phenotyping()
+        
+    makeCall("lights_D_0_0_0]")
+    
+    a = ser.readline().decode('utf-8').rstrip()
+    print("a:",a) 
     for x in range(5):
         b = ser.readline().decode('utf-8').rstrip()
         print("b:",b)
-```
-```python       
-    run_cameras('A')
- ```
- ```python   
+        
     ser.close()
- ```
- ### Main Phenotyping Function
- ```python
- def reset():
-    ser.write(b"step_-600]")
-    a = ser.readline().decode('utf-8').rstrip()
-    print("a:",a)
-    ser.reset_input_buffer()
+
 ```
-The reset() function moves the platform back to the start of the actuator.
-```python
-def phenotyping():
-    ser.write(b"step_60]")
-    a = ser.readline().decode('utf-8').rstrip()
-    print("a:",a)
-    time.sleep(4)
-    for i in range(0,2): # 6 positions to image 3 tubes at a time for 2 racks
-        ser.write(b"lights_A_100_100_100]")
-        run_cameras('A')
-        time.sleep(1)
-        print("Photo A captured")
-        
-        ser.write(b"lights_B_100_100_100]")
-        run_cameras('B')
-        time.sleep(1)
-        print("Photo B captured")
-        
-        ser.write(b"lights_C_100_100_100]")
-        run_cameras('C')
-        time.sleep(1)
-        print("Photo C captured")
-        
-        ser.write(b"lights_D_100_100_100]")
-        run_cameras('D')
-        time.sleep(1)
-        print("Photo D captured")
-        
-        ser.reset_input_buffer()
-        ser.write(b"step_80]") # move platform to next position
-        a = ser.readline().decode('utf-8').rstrip()
-        print("a:",a)
-        time.sleep(7)
-        ser.reset_input_buffer()
-        
-    reset() 
- ```
 
 ## Arduino Documentation
 
