@@ -138,7 +138,7 @@ def reset():
 The next section of our [Raspberry Pi code](./Phenotyping.py) deals with serial communication between the Raspberry Pi and the Arduino. Serial communication is the process of sending information bit by bit, sequentially, over a communication channel. By using serial communication, we're able to call Arduino functions and send inputs to those functions from the Raspberry Pi. This interface increases the functionality and efficiency of the system by removing the need to update our Arduino script everytime we need to change an input in one of the Arduino functions. 
 
 **Defining the makeCall function:**
-### This function facilitates serial communication between the Raspberry Pi and the Arduino. The parameter, "command", is a string containing information to call a specific function on the Arduino. Feedback from the Arduino is continuously read until "Complete" is sent to the Raspberry Pi, signaling that the function has finished running.
+This function facilitates serial communication between the Raspberry Pi and the Arduino. The parameter, "command", is a string containing information to call a specific function on the Arduino. Feedback from the Arduino is continuously read until "Complete" is sent to the Raspberry Pi, signaling that the function has finished running.
 ```python
 def makeCall(command):
     ser.write(bytes(command,'utf-8'))
@@ -183,7 +183,7 @@ def phenotyping():
 
     reset()
 ```
-### Main script:
+**Main script:**
 ```python
 if __name__ == '__main__':
 
