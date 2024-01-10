@@ -9,13 +9,9 @@
 ### [Raspberry Pi Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#raspberry-pi-documentation-1)
   [Cameras](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#cameras)
   
-  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-arduino)
+  [Serial Communication with Arduino](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-the-arduino)
 ### [Arduino Documentation](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#arduino-documentation-1)
-  [Serial Communication with Raspberry Pi](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#serial-communication-with-raspberry-pi)
   
-  [Lights](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#lights)
-  
-  [Stepper Motor](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#stepper-motor)
 ### [3D Printing](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#3d-printing-1)
   [Camera Arms and Holders](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#camera-parts)
   
