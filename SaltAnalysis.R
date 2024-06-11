@@ -5,6 +5,7 @@
   require(scales)
   
   # Starting from growth curves
+  # **** Start by loading the file "SaltGrowthCurves.RData" this will contain the "Salt_GC" object to complete the analysis ****
   # Take out anything that does not have at least 15 consecutive days above 1000 area
   Salt_GC_filtered<-lapply(Salt_GC,function(x) x[x[,"area"]>1000,])
   keeps<-sapply(Salt_GC_filtered,nrow)
