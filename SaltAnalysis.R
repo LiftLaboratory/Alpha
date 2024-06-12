@@ -3,8 +3,10 @@
   require(drc)
   require(ggplot2)
   require(scales)
-  
-  SlidingRGR = function(grMat,winSize=5,fitCut=0.95,numToFit=4)
+
+  # This function takes in growth curve data and a window size
+  # Using a sliding window, it calculates the Relative growth rate for every window along the curve
+  SlidingRGR = function(grMat,winSize=5)
   {
     require(stringr)
     
@@ -14,7 +16,6 @@
     fit<-NULL
     area<-NULL
     
-    #grMat[grMat[,2]==0,2]<-1
     keeprows<-which(grMat[,"area"]>100) # keeping all rows in column two (area)
     if(length(keeprows)>=winSize)
     {
@@ -89,8 +90,9 @@
               domain = c(0, Inf))
   }
   
-  
-  # Starting from growth curves
+  # ***** This is where the analysis begins *****
+  # ***** Load in the growth curve data "SaltGrowthCurves.RData" *****
+
   # Take out anything that does not have at least 15 consecutive days above 1000 area
   Salt_GC_filtered<-lapply(Salt_GC,function(x) x[x[,"area"]>1000,])
   keeps<-sapply(Salt_GC_filtered,nrow)
