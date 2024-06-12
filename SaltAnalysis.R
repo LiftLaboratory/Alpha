@@ -161,7 +161,7 @@
     theme(legend.position="none", panel.background = element_rect(fill = 'white', color = 'white'),
           panel.grid.major = element_line(color = 'lightblue', linetype = 'solid'),
           axis.text=element_text(size=10))
-  pdf(file = "/Users/ryan/Documents/SartorLab/Publications/Alpha/Plots/EC50s.pdf",width = 5,height = 12)
+  pdf(file = "/Path/To/Plots/EC50s.pdf",width = 5,height = 12)
   plot(tbars)
   dev.off()
   
@@ -184,7 +184,7 @@
       #scale_x_sqrt(breaks=c(0,50,100,150,200), expand=c(0,0.1)) + 
       geom_linerange(aes(ymin=mean-sd, ymax=mean+sd), size = 1.5, color="black") +
       geom_point(shape=21, size=2, fill=colVec[curVar], stroke = 2)
-    pdf(file = paste("/Users/ryan/Documents/SartorLab/Publications/Alpha/Plots/",curVar,"_SaltCurve.pdf",sep=""),width = 3,height = 6)
+    pdf(file = paste("/Path/To/Plots/",curVar,"_SaltCurve.pdf",sep=""),width = 3,height = 6)
     plot(tplot)
     dev.off()
   } 
