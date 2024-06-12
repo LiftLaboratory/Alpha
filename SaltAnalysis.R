@@ -4,8 +4,93 @@
   require(ggplot2)
   require(scales)
   
+  SlidingRGR = function(grMat,winSize=5,fitCut=0.95,numToFit=4)
+  {
+    require(stringr)
+    
+    date<-NULL
+    rgrs<-NULL
+    dens<-NULL
+    fit<-NULL
+    area<-NULL
+    
+    #grMat[grMat[,2]==0,2]<-1
+    keeprows<-which(grMat[,"area"]>100) # keeping all rows in column two (area)
+    if(length(keeprows)>=winSize)
+    {
+      grMat<-grMat[keeprows,]
+      grMat[,"Dens"]<-log(grMat[,"area"])
+      
+      tdate<-grMat[,"timestamp"]
+      tdate<-str_extract(string = tdate, pattern = "^[[:digit:]]{4}\\-[[:digit:]]{2}\\-[[:digit:]]{2}")
+      tdate<-as.Date(x = tdate, format = "%Y-%m-%d")
+      #return(tdate)
+      grMat[,"Date"]<-tdate
+      
+      winStarts<-1:(nrow(grMat)-winSize+1)
+      for(st in winStarts)
+      {
+        curMat<-grMat[st:(st+winSize-1),] # the rows within the window
+        curRow<-(ceiling(winSize/2))
+        date<-c(date,curMat[curRow,"Date"])
+        area<-c(area,curMat[curRow,"area"])
+        dens<-c(dens,curMat[curRow,"Dens"]) # ceiling of 5/2 = 3
+        
+        
+        # calculate RGR and fit from log values
+        tmpLm<-lm(formula = Dens~Date, data = curMat) # calculating the slope of the log value
+        tmpSlp<-coef(tmpLm)["Date"]
+        rgrs<-c(rgrs,tmpSlp)
+        fit<-c(fit,summary(tmpLm)$adj.r.squared)
+      } 
+      
+      
+      tMat<-cbind(date,area,dens,rgrs,fit)
+      return(tMat)
+    }
+    return(NULL)
+  }
+  
+  # c is a vector of the coefficients of the model
+  log5AsY = function(x,c)
+  {
+    y = c[2] + (c[3]-c[2])/(1+exp(c[1]*(log(x)-log(c[4]))))^c[5]
+    return(y)
+  }
+  # c is a vector of the coefficients of the model
+  log5AsX = function(y,c)
+  {
+    x = exp((log(((c[2]+((c[3]-c[2])/y))^(1/c[5]))-1)/c[1])+log(c[4]))
+  }
+  # this function is used to calculte the EC50 values
+  getEC50 = function(inData,tIndex)
+  {
+    require(drc)
+    tryCatch(
+      expr = {
+        mod = drm(formula = Inhib ~ SaltConc, data = inData[tIndex,], fct = LL.5())
+        ec50 = log5AsX(0.5,mod$coefficients)
+        return(as.numeric(ec50))
+      },
+      error = function(e){ 
+        print(e)
+        return(NA)
+      }
+    )
+    
+  }
+  
+  # this is a function used for plotting a square root transformed axis with ggplot2
+  mysqrt_trans <- function()
+  {
+    trans_new("mysqrt", 
+              transform = base::sqrt,
+              inverse = function(x) ifelse(x<0, 0, x^2),
+              domain = c(0, Inf))
+  }
+  
+  
   # Starting from growth curves
-  # **** Start by loading the file "SaltGrowthCurves.RData" this will contain the "Salt_GC" object to complete the analysis ****
   # Take out anything that does not have at least 15 consecutive days above 1000 area
   Salt_GC_filtered<-lapply(Salt_GC,function(x) x[x[,"area"]>1000,])
   keeps<-sapply(Salt_GC_filtered,nrow)
@@ -76,7 +161,7 @@
     theme(legend.position="none", panel.background = element_rect(fill = 'white', color = 'white'),
           panel.grid.major = element_line(color = 'lightblue', linetype = 'solid'),
           axis.text=element_text(size=10))
-  pdf(file = "/Path/To/Plots/EC50s.pdf",width = 5,height = 12)
+  pdf(file = "/Users/ryan/Documents/SartorLab/Publications/Alpha/Plots/EC50s.pdf",width = 5,height = 12)
   plot(tbars)
   dev.off()
   
@@ -99,45 +184,8 @@
       #scale_x_sqrt(breaks=c(0,50,100,150,200), expand=c(0,0.1)) + 
       geom_linerange(aes(ymin=mean-sd, ymax=mean+sd), size = 1.5, color="black") +
       geom_point(shape=21, size=2, fill=colVec[curVar], stroke = 2)
-    pdf(file = paste("/Path/To/Plots/",curVar,"_SaltCurve.pdf",sep=""),width = 3,height = 6)
+    pdf(file = paste("/Users/ryan/Documents/SartorLab/Publications/Alpha/Plots/",curVar,"_SaltCurve.pdf",sep=""),width = 3,height = 6)
     plot(tplot)
     dev.off()
   } 
 
-# c is a vector of the coefficients of the model
-log5AsY = function(x,c)
-{
-  y = c[2] + (c[3]-c[2])/(1+exp(c[1]*(log(x)-log(c[4]))))^c[5]
-  return(y)
-}
-# c is a vector of the coefficients of the model
-log5AsX = function(y,c)
-{
-  x = exp((log(((c[2]+((c[3]-c[2])/y))^(1/c[5]))-1)/c[1])+log(c[4]))
-}
-# this function is used to calculte the EC50 values
-getEC50 = function(inData,tIndex)
-{
-  require(drc)
-  tryCatch(
-    expr = {
-      mod = drm(formula = Inhib ~ SaltConc, data = inData[tIndex,], fct = LL.5())
-      ec50 = log5AsX(0.5,mod$coefficients)
-      return(as.numeric(ec50))
-    },
-    error = function(e){ 
-      print(e)
-      return(NA)
-    }
-  )
-  
-}
-
-# this is a function used for plotting a square root transformed axis with ggplot2
-mysqrt_trans <- function()
-{
-  trans_new("mysqrt", 
-            transform = base::sqrt,
-            inverse = function(x) ifelse(x<0, 0, x^2),
-            domain = c(0, Inf))
-}
