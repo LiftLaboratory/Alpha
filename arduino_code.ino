@@ -82,38 +82,10 @@ void loop() {
     }
   }
 
-/*
-int steppermotor(int distance)
-{
-  int stepsPerMM = 320;
-  int numberOfSteps = stepsPerMM * distance;
-  stepper.setCurrentPosition(0); 
-  stepper.moveTo(numberOfSteps);
-  //stepper.setMaxSpeed(10000);
-  stepper.setAcceleration(6000);
-  //stepper.setSpeed(6000);
-  if (distance > 0) 
-    {
-     while((stepper.currentPosition()<stepper.targetPosition()) && (!isPlatformHere(back_photo_sensor)))
-            { 
-               stepper.run();
-            }
-    }
-  else
-    {
-     while((stepper.currentPosition()>stepper.targetPosition()) && (!isPlatformHere(front_photo_sensor)))
-            { 
-                stepper.run();
-            }
-    }
-}
-*/
-
-
-int steppermotor(int distance) {
-  int numberOfSteps = 320;
-  if (distance > 0) 
-    {
+  int steppermotor(int distance) {
+    int numberOfSteps = 320;
+    if (distance > 0) 
+      {
       
         for (int s=0;s < distance;s=s+1)
           {
