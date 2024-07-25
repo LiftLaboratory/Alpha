@@ -5,14 +5,15 @@
   require(scales)
 
   # This function contains the main analysis script for the salt tolerance study
+  # It is intended to be run line-by-line. It exists as a function so this file can be sourced without running the analysis (yeah, I know, we should just use R Markdown)
   Salt_Analysis = function()
   {
     # ***** This is where the analysis begins *****
-    # ***** Be sure to run the "ALPHA_GrowthCurves.R" script to get the salt_GC object *****
+    # ***** Be sure to run the "ALPHA_GrowthCurves.R" script first to get the salt_GC object *****
     
     # define the directory to save plots into
     #********
-    # plotDir = "/Path/To/Plots"
+    plotDir = "/Path/To/Plots"
     #********
     
     # Take out anything that does not have at least 15 consecutive days above 1000 area
@@ -21,6 +22,20 @@
     keeps<-which(keeps>=15)
     salt_GC_filtered<-salt_GC_filtered[keeps]
     
+    # plot the growth curves for one variety
+    nmSplit = strsplit(names(salt_GC_filtered),split = "_",fixed = T)
+    sampleType = sapply(nmSplit,function(x) paste(x[1:2],collapse = "_"))
+    gcBySample = tapply(1:length(salt_GC_filtered), INDEX = sampleType, function(x) salt_GC_filtered[x])
+    # plot growth curves
+    colVec = c(rgb(0,0.8,0,0.7),rgb(0,0,0.8,0.7),rgb(0.8,0,0,0.7),rgb(0,0,0,0.8))
+    pdf(file = file.path(plotDir,"GrowthCurves.pdf"),width = 11, height = 6)
+    plotMultiGC(plotList = gcBySample[["Greece_0mM"]],col = colVec[1])
+    plotMultiGC(plotList = gcBySample[["Greece_50mM"]],col = colVec[2], add = TRUE)
+    plotMultiGC(plotList = gcBySample[["Greece_100mM"]],col = colVec[3], add = TRUE)
+    plotMultiGC(plotList = gcBySample[["Greece_200mM"]],col = colVec[4], add = TRUE)
+    legend("topleft",legend = c("0mM Na","50mM Na","100mM Na","200mM Na"),col = colVec, lwd = 3)
+    dev.off()
+    
     # Look at a sliding window of 10 days, calculate the relative growth rate in each window
     Salt_filtered_RGR<-lapply(salt_GC_filtered, function(x) SlidingRGR(grMat = x, winSize = 10))
     
@@ -28,7 +43,6 @@
     maxRGR<-sapply(Salt_filtered_RGR,function(x) max(x[(x[,"fit"]>0.8),"rgrs"]))
     
     # Group each sample variety
-    nmSplit = strsplit(names(maxRGR),split = "_",fixed = T)
     var = sapply(nmSplit,function(x) x[1])
     dose = sapply(nmSplit,function(x) x[2])
     varLst = tapply(X = 1:length(maxRGR),INDEX = var,function(x) data.frame(maxRGR[x],dose[x]))
@@ -85,7 +99,7 @@
       theme(legend.position="none", panel.background = element_rect(fill = 'white', color = 'white'),
             panel.grid.major = element_line(color = 'lightblue', linetype = 'solid'),
             axis.text=element_text(size=10))
-    pdf(file = file.path(plotDir,"EC50s.pdf"),width = 5,height = 12)
+    pdf(file = file.path(plotDir,"EC50s.pdf"),width = 5,height = 6)
     plot(tbars)
     dev.off()
     
@@ -200,3 +214,36 @@
               inverse = function(x) ifelse(x<0, 0, x^2),
               domain = c(0, Inf))
   }
+  
+  # This function is used to plot multiple growth curves on one plot
+  # Input: 
+  # plotList: a list of growth curve data.frames with "timestamp" (string) and "area" (numeric)
+  # col: the line color
+  # add: if True, add to existing plot, if False, create a new plot
+  plotMultiGC <- function(plotList, col="black", add=FALSE)
+  {
+    # convert all timestamps to POSIX time
+    for(i in 1:length(plotList))
+    {
+      plotList[[i]]$timestamp = tdate<-as.Date(x = plotList[[i]]$timestamp, format = "%Y_%m_%d_%H:%M:%S")
+    }
+    
+    # plot the first one
+    if(!add)
+    {
+      plot(plotList[[1]][,1:2], type="l", col=col, lwd=4, xlab = "Date", ylab = "Plant Surface Coverage (pixels)", bty="n")
+      addStart = 2
+    }
+    else
+      addStart = 1
+    
+    if (length(plotList)>=addStart)
+    {
+      for( i in addStart:length(plotList))
+      {
+        points(plotList[[i]][,1:2], type="l", col=col, lwd=4)
+      }
+    }
+  }
+  
+  
