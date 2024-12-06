@@ -22,6 +22,8 @@
   [Incubator and Lights](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#incubator-and-lights)
 ### [Assembly](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#assembly-1)
 
+### [Videos](https://github.com/LiftLaboratory/Alpha/blob/main/README.md#videos-1)
+
 ## About the Project:
 ### Summary
 The goal of this project is to use highthroughput phenotyping to develop *Lemna gibba*, a species of duckweed, into a new crop for U.S. agriculture. If we wish to sever our dependence on fossil fuels, the petrochemical industry must find alternative feedstocks, such as biomass, to meet the rising demands for its products and chemicals, most notably plastics. Current biomass sources require entensive fertilizer use, cause soil degradation, and create high levels of greenhouse gas emissions throughout their life cycle. By developing *Lemna gibba* into a crop suitable for agricultural production, essential biomass can be produced with substantially lower environmental impacts. The use of a highthroughput phenotyping system will allow us to selectively focus on traits or phenotypes of interest during this breeding process.
@@ -504,3 +506,7 @@ How is linear actuator attached?
 
 </p>
 </details>
+
+## Videos
+### Imaging Run
+### Duckweed Growing
