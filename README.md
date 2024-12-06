@@ -391,7 +391,7 @@ bool isPlatformHere(int photo_sensor_pin){
 ## 3D Printing
 ### Camera Arms and Holders
 
-[Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20Base_Scaled%20.stl)
+[Camera Arm Base](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20Base_Scaled.stl)
 
 [Camera Arm Base Clamp](https://github.com/LiftLaboratory/Alpha/blob/main/Camera%20Arm%20Base%20Clamp_Scaled%20(1).stl)
 
