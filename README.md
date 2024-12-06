@@ -454,7 +454,7 @@ bool isPlatformHere(int photo_sensor_pin){
 <details><summary>Cage and Actuator Diagram</summary>
 <p>
   
-![Cage and Actuator Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/AlphaCage%20(1).png?raw=true)
+![Cage and Actuator Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/AlphaCage.png?raw=true)
 
 </p>
 </details>
@@ -473,7 +473,7 @@ How is linear actuator attached?
 <details><summary>Hinge Open Diagram</summary>
 <p>
 
-![Hinge Open Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeOpen%20(1).png?raw=true)
+![Hinge Open Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeOpen.png?raw=true)
 
 </p>
 </details>
@@ -481,7 +481,7 @@ How is linear actuator attached?
 <details><summary>Hinge Closed Diagram</summary>
 <p>
 
-![Hinge Closed Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeClosed%20(1).png?raw=true)
+![Hinge Closed Diagram](https://github.com/LiftLaboratory/Alpha/blob/main/HingeClosed.png?raw=true)
 
 </p>
 </details>
