@@ -517,5 +517,5 @@ How is linear actuator attached?
 ### Duckweed Growing
 [View Online](https://drive.google.com/file/d/1gn4VjBjSb2MmdPQBn1_wjvAy0_-CXfRd/view?usp=drive_link?raw=true)
 
-[Download Video (Higher Resolution)](https://github.com/LiftLaboratory/Alpha/blob/main/Lemna_Timelapse.mp4)
+[Download Video (Higher Resolution)](https://github.com/LiftLaboratory/Alpha/blob/main/Lemna_Timelapse.m4v)
 
