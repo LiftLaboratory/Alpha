@@ -511,8 +511,10 @@ How is linear actuator attached?
 
 ### Imaging Run
 [Download Video](https://github.com/LiftLaboratory/Alpha/blob/main/ALPHA_Imaging.m4v?raw=true)
+
 [View Online](https://drive.google.com/file/d/1sWXWVSjlvXrg_iw4Ut1fDFUae9CkMs8e/view?usp=drive_link?raw=true)
 
 ### Duckweed Growing
 [Download Video](https://github.com/LiftLaboratory/Alpha/blob/main/Lemna_Timelapse.mp4?raw=true)
+
 [View Online](https://drive.google.com/file/d/1gn4VjBjSb2MmdPQBn1_wjvAy0_-CXfRd/view?usp=drive_link?raw=true)
